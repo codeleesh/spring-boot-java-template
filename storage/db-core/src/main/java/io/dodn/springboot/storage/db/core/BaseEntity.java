@@ -22,9 +22,15 @@ public abstract class BaseEntity {
     @Column
     private LocalDateTime createdAt;
 
+    @Column
+    private Long created;
+
     @UpdateTimestamp
     @Column
     private LocalDateTime updatedAt;
+
+    @Column
+    private Long updated;
 
     public Long getId() {
         return id;
@@ -38,4 +44,11 @@ public abstract class BaseEntity {
         return updatedAt;
     }
 
+    public Long getCreated() {
+        return created;
+    }
+
+    public Long getUpdated() {
+        return updated;
+    }
 }
