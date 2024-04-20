@@ -16,3 +16,7 @@ include 'tests:api-docs'
 include 'support:logging'
 include 'support:monitoring'
 include 'clients:client-example'
+include 'member'
+include 'member:member-api'
+findProject(':member:member-api')?.name = 'member-api'
+
