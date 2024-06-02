@@ -18,10 +18,27 @@ public class RequestHeaderController {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
 
+    /**
+     * MultiValueMap
+     *  Map과 유사한데, 하나의 키에 여러 값을 받을 수 있음
+     *  HTTP Header, HTTP 쿼리 파라미터와 같이 하나의 키에 여러 값을 받을 때 사용
+     * @param request
+     * @param response
+     * @param httpMethod
+     * @param locale
+     * @param headerMap
+     * @param host
+     * @param cookie
+     * @return
+     */
     @RequestMapping("/headers")
-    public String headers(final HttpServletRequest request, final HttpServletResponse response, final HttpMethod httpMethod
-            , final Locale locale, final @RequestHeader MultiValueMap<String, String> headerMap
-            , final @RequestHeader("host") String host, @CookieValue(value = "myCookie", required = false) String cookie) {
+    public String headers(final HttpServletRequest request
+            , final HttpServletResponse response
+            , final HttpMethod httpMethod
+            , final Locale locale
+            , final @RequestHeader MultiValueMap<String, String> headerMap
+            , final @RequestHeader("host") String host
+            , @CookieValue(value = "myCookie", required = false) String cookie) {
 
         log.info("request = {}", request);
         log.info("response = {}", response);
