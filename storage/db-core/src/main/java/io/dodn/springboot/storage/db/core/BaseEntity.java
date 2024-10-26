@@ -51,4 +51,5 @@ public abstract class BaseEntity {
     public Long getUpdated() {
         return updated;
     }
+
 }

@@ -32,8 +32,7 @@ public class MappingController {
     }
 
     /**
-     * PathVariable 사용
-     * 변수명이 같으면 생략 가능
+     * PathVariable 사용 변수명이 같으면 생략 가능
      */
     @GetMapping("/mapping-get-v3/{userId}")
     public String mappingGetV3(final @PathVariable String userId) {
@@ -46,19 +45,16 @@ public class MappingController {
      * PathVariable 사용 다중
      */
     @GetMapping("/mapping-get-v4/users/{userId}/orders/{orderId}")
-    public String mappingGetV3(final @PathVariable("userId") String userId, final @PathVariable("orderId") Long orderId) {
+    public String mappingGetV3(final @PathVariable("userId") String userId,
+            final @PathVariable("orderId") Long orderId) {
 
         log.info("mapping-get-v3 userId {}, orderId {}", userId, orderId);
         return "ok";
     }
 
     /**
-     * 파라미터로 추가 매핑
-     * params="mode"
-     * params="!mode"
-     * params="mode=debug"
-     * params="mode!=debug" ( != )
-     * params={"mode=debug", "data=good"}
+     * 파라미터로 추가 매핑 params="mode" params="!mode" params="mode=debug" params="mode!=debug" (
+     * != ) params={"mode=debug", "data=good"}
      */
     @GetMapping(value = "/mapping-param", params = "mode = debug")
     public String mappingParams() {
@@ -68,10 +64,7 @@ public class MappingController {
     }
 
     /**
-     * 특정 헤더로 추가 매핑
-     * headers="mode"
-     * headers="!mode"
-     * headers="mode=debug"
+     * 특정 헤더로 추가 매핑 headers="mode" headers="!mode" headers="mode=debug"
      * headers="mode!=debug" ( != )
      */
     @GetMapping(value = "/mapping-param", headers = "mode = debug")
@@ -82,13 +75,9 @@ public class MappingController {
     }
 
     /**
-     * 미디어타입 조건 매핑 - HTTP 요청 Content-Type, consume
-     * Content-Type 헤더 기반 추가 매핑 Media Type
-     * consumes="application/json"
-     * consumes="!application/json"
-     * consumes="application/*"
-     * consumes="*\/*"
-     * MediaType.APPLICATION_JSON_VALUE
+     * 미디어타입 조건 매핑 - HTTP 요청 Content-Type, consume Content-Type 헤더 기반 추가 매핑 Media Type
+     * consumes="application/json" consumes="!application/json" consumes="application/*"
+     * consumes="*\/*" MediaType.APPLICATION_JSON_VALUE
      */
     @PostMapping(value = "/mapping-consume", consumes = "application/json")
     public String mappingConsumes() {
@@ -98,12 +87,8 @@ public class MappingController {
     }
 
     /**
-     * 미디어타입 조건 매핑 - HTTP 요청 Accept, produce
-     * Accept 헤더 기반 추가 매핑 Media Type
-     * produces="text/html"
-     * produces="!text/html"
-     * produces="text/*"
-     * produces="*\/*"
+     * 미디어타입 조건 매핑 - HTTP 요청 Accept, produce Accept 헤더 기반 추가 매핑 Media Type
+     * produces="text/html" produces="!text/html" produces="text/*" produces="*\/*"
      */
     @PostMapping(value = "/mapping-produce", consumes = "text/html")
     public String mappingProduces() {
@@ -111,4 +96,5 @@ public class MappingController {
         log.info("mappingProduces");
         return "ok";
     }
+
 }

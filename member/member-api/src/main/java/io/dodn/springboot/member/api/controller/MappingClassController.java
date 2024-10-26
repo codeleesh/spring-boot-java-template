@@ -35,4 +35,5 @@ public class MappingClassController {
 
         return "delete userId=" + userId;
     }
+
 }

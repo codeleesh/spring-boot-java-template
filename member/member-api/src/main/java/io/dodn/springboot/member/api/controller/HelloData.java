@@ -3,6 +3,7 @@ package io.dodn.springboot.member.api.controller;
 public class HelloData {
 
     private String username;
+
     private int age;
 
     public HelloData() {
@@ -28,4 +29,5 @@ public class HelloData {
     public void setAge(int age) {
         this.age = age;
     }
+
 }

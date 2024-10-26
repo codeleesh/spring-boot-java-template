@@ -62,8 +62,8 @@ public class RequestParamController {
 
     @ResponseBody
     @RequestMapping("/request-param-required")
-    public String requestParamRequired(@RequestParam(value = "username", required = true) final String username
-            , @RequestParam(value = "age", required = false) final int age) {
+    public String requestParamRequired(@RequestParam(value = "username", required = true) final String username,
+            @RequestParam(value = "age", required = false) final int age) {
 
         log.info("username={}, age={}", username, age);
 
@@ -72,8 +72,8 @@ public class RequestParamController {
 
     @ResponseBody
     @RequestMapping("/request-param-default")
-    public String requestParamDefault(@RequestParam(value = "username", defaultValue = "guest") final String username
-            , @RequestParam(value = "age", defaultValue = "-1") final int age) {
+    public String requestParamDefault(@RequestParam(value = "username", defaultValue = "guest") final String username,
+            @RequestParam(value = "age", defaultValue = "-1") final int age) {
 
         log.info("username={}, age={}", username, age);
 
@@ -91,10 +91,8 @@ public class RequestParamController {
     }
 
     /**
-     * 스프링MVC는 `@ModelAttribute` 가 있으면 다음을 실행
-     *  `HelloData` 객체 생성
-     *  요청 파라미터의 이름으로 `HelloData` 객체의 프로퍼티를 찾음
-     *  해당 프로퍼티의 setter를 호출해서 파라미터의 값을 입력(바인딩)
+     * 스프링MVC는 `@ModelAttribute` 가 있으면 다음을 실행 `HelloData` 객체 생성 요청 파라미터의 이름으로 `HelloData`
+     * 객체의 프로퍼티를 찾음 해당 프로퍼티의 setter를 호출해서 파라미터의 값을 입력(바인딩)
      * @param helloData
      * @return
      */
@@ -108,10 +106,9 @@ public class RequestParamController {
     }
 
     /**
-     * `@ModelAttribute`, `@RequestParam` 생략 가능
-     * 스프링은 해당 생략시 다음과 같은 규칙을 적용
-     *  `String`, `int`, `Integer` 같은 단순 타입 - `@RequestParam`
-     *  나머지 - `@ModelAttribute (argument resolver로 지정해둔 타입 외)
+     * `@ModelAttribute`, `@RequestParam` 생략 가능 스프링은 해당 생략시 다음과 같은 규칙을 적용 `String`, `int`,
+     * `Integer` 같은 단순 타입 - `@RequestParam` 나머지 - `@ModelAttribute (argument resolver로
+     * 지정해둔 타입 외)
      * @param helloData
      * @return
      */
@@ -123,4 +120,5 @@ public class RequestParamController {
 
         return "ok";
     }
+
 }
