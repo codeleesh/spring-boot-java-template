@@ -1,4 +1,4 @@
-package io.dodn.springboot.storage.db.core;
+package io.dodn.springboot.storage.db.member;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
@@ -11,7 +11,8 @@ public class Password {
     @Column
     private String password;
 
-    protected Password() {}
+    protected Password() {
+    }
 
     public Password(final String password) {
         this.password = password;
@@ -23,8 +24,10 @@ public class Password {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         Password password1 = (Password) o;
         return Objects.equals(password, password1.password);
     }
@@ -36,8 +39,7 @@ public class Password {
 
     @Override
     public String toString() {
-        return "Password{" +
-                "password='" + password + '\'' +
-                '}';
+        return "Password{" + "password='" + password + '\'' + '}';
     }
+
 }

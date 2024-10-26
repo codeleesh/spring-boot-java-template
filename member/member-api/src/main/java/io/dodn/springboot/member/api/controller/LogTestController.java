@@ -6,10 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Log level
- * TRACE > DEBUG > INFO > WARN > ERROR
- * 기본 Log level info
- * logging.leve.info=root
+ * Log level TRACE > DEBUG > INFO > WARN > ERROR 기본 Log level info logging.leve.info=root
  */
 @RestController
 public class LogTestController {
@@ -26,7 +23,6 @@ public class LogTestController {
         // 파라미터만 치환해서 trace로 넘김
         log.trace("trace log={}", name);
 
-
         log.debug("race log={}", name);
         log.info("race log={}", name);
         log.warn("race log={}", name);
@@ -34,4 +30,5 @@ public class LogTestController {
 
         return "ok";
     }
+
 }

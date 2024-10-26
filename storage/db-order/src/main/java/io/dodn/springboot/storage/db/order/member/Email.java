@@ -1,4 +1,4 @@
-package io.dodn.springboot.storage.db.core;
+package io.dodn.springboot.storage.db.order.member;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
@@ -11,7 +11,8 @@ public class Email {
     @Column
     private String email;
 
-    protected Email() {}
+    protected Email() {
+    }
 
     public Email(final String mail) {
         this.email = mail;
@@ -23,8 +24,10 @@ public class Email {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         Email email1 = (Email) o;
         return Objects.equals(email, email1.email);
     }
@@ -36,8 +39,7 @@ public class Email {
 
     @Override
     public String toString() {
-        return "Email{" +
-                "email='" + email + '\'' +
-                '}';
+        return "Email{" + "email='" + email + '\'' + '}';
     }
+
 }
