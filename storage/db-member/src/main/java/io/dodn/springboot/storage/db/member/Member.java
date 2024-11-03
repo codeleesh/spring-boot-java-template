@@ -2,7 +2,7 @@ package io.dodn.springboot.storage.db.member;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.dodn.springboot.storage.db.member.core.BaseEntity;
-import io.dodn.springboot.storage.db.order.Order;
+import io.dodn.springboot.storage.db.order.entity.Order;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
