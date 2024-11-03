@@ -1,4 +1,4 @@
-package io.dodn.springboot.storage.db.order.member;
+package io.dodn.springboot.storage.db.order.entity;
 
 import jakarta.persistence.Embeddable;
 import lombok.Getter;

@@ -1,11 +1,11 @@
-package io.dodn.springboot.storage.db.order.member;
+package io.dodn.springboot.storage.db.order.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.dodn.springboot.storage.db.order.Order;
-import io.dodn.springboot.storage.db.order.core.BaseEntity;
+import io.dodn.springboot.storage.db.order.entity.core.BaseEntity;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,9 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "MemberOrder")
 @Getter
 @Setter
-public class Member extends BaseEntity {
+public class MemberOrder extends BaseEntity {
 
     @Embedded
     private Name name;
@@ -28,20 +29,29 @@ public class Member extends BaseEntity {
 
     private Integer age;
 
+    @Embedded
+    private Address address;
+
     @JsonIgnore
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "memberOrder")
     private List<Order> orders = new ArrayList<>();
 
-    protected Member() {
+    protected MemberOrder() {
     }
 
-    public Member(final String nameOfFirst, final String nameOfLast, final String mail, final String password,
-            final int age) {
+    public MemberOrder(final String nameOfFirst, final String nameOfLast, final String mail, final String password,
+                       final int age, final Address address) {
 
         this.name = new Name(nameOfFirst, nameOfLast);
         this.email = new Email(mail);
         this.password = new Password(password);
         this.age = age;
+        this.address = address;
+    }
+
+    public static MemberOrder of(final String nameOfFirst, final String nameOfLast, final Address address) {
+
+        return new MemberOrder(nameOfFirst, nameOfLast, null, null, 0, address);
     }
 
     public String getFullName() {

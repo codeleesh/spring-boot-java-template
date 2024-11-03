@@ -12,13 +12,12 @@ class OrderDataSourceConfig {
 
     @Bean
     @ConfigurationProperties(prefix = "storage.datasource.order")
-    public HikariConfig coreHikariConfig() {
+    public HikariConfig orderHikariConfig() {
         return new HikariConfig();
     }
 
     @Bean
-    public HikariDataSource coreDataSource(@Qualifier("coreHikariConfig") HikariConfig config) {
+    public HikariDataSource orderDataSource(@Qualifier("orderHikariConfig") HikariConfig config) {
         return new HikariDataSource(config);
     }
-
 }

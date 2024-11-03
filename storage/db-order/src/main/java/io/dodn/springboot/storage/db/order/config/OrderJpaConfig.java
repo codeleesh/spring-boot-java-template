@@ -7,8 +7,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@EntityScan(basePackages = "io.dodn.springboot.storage.db.order")
-@EnableJpaRepositories(basePackages = "io.dodn.springboot.storage.db.order")
+@EntityScan(basePackages = "io.dodn.springboot.storage.db.order.entity")
+@EnableJpaRepositories(basePackages = "io.dodn.springboot.storage.db.order.repository")
 class OrderJpaConfig {
 
 }
