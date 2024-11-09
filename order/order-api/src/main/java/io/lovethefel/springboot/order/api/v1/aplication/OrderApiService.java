@@ -2,6 +2,7 @@ package io.lovethefel.springboot.order.api.v1.aplication;
 
 import io.dodn.springboot.storage.db.order.entity.Order;
 import io.dodn.springboot.storage.db.order.repository.OrderRepository;
+import io.dodn.springboot.storage.db.order.repository.dto.OrderSimpleQueryDto;
 import io.lovethefel.springboot.order.api.v1.aplication.response.SimpleOrderResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,4 +21,9 @@ public class OrderApiService {
         return orders.stream().map(SimpleOrderResponse::from).toList();
     }
 
+    public List<SimpleOrderResponse> ordersV2() {
+
+        final List<OrderSimpleQueryDto> orderDtos = orderRepository.findOrderDtos();
+        return orderDtos.stream().map(SimpleOrderResponse::from).toList();
+    }
 }
