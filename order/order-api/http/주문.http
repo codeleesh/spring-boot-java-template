@@ -1,7 +1,13 @@
 #### 주문 조회
+GET http://localhost:8080/api/v1/orders
+
+#### 주문 조회
+GET http://localhost:8080/api/v2/orders
+
+#### SIMPLE 주문 조회
 GET http://localhost:8080/api/simple-orders
 Accept: application/json
 
-#### 주문 조회 v2
+#### SIMPLE 주문 조회 v2
 GET http://localhost:8080/api/v2/simple-orders
 Accept: application/json
