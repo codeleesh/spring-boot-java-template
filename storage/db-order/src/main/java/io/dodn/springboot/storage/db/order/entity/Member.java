@@ -13,10 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "MemberOrder")
+@Table(name = "Member")
 @Getter
 @Setter
-public class MemberOrder extends BaseEntity {
+public class Member extends BaseEntity {
 
     @Embedded
     private Name name;
@@ -33,14 +33,14 @@ public class MemberOrder extends BaseEntity {
     private Address address;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "memberOrder")
+    @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>();
 
-    protected MemberOrder() {
+    protected Member() {
     }
 
-    public MemberOrder(final String nameOfFirst, final String nameOfLast, final String mail, final String password,
-                       final int age, final Address address) {
+    public Member(final String nameOfFirst, final String nameOfLast, final String mail, final String password,
+                  final int age, final Address address) {
 
         this.name = new Name(nameOfFirst, nameOfLast);
         this.email = new Email(mail);
@@ -49,9 +49,9 @@ public class MemberOrder extends BaseEntity {
         this.address = address;
     }
 
-    public static MemberOrder of(final String nameOfFirst, final String nameOfLast, final Address address) {
+    public static Member of(final String nameOfFirst, final String nameOfLast, final Address address) {
 
-        return new MemberOrder(nameOfFirst, nameOfLast, null, null, 0, address);
+        return new Member(nameOfFirst, nameOfLast, null, null, 0, address);
     }
 
     public String getFullName() {

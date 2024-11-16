@@ -17,7 +17,7 @@ public record SimpleOrderResponse(
 ) {
     public static SimpleOrderResponse from(final Order order) {
 
-        return new SimpleOrderResponse(order.getId(), order.getMemberOrder().getFullName(), order.getOrderDate(),
+        return new SimpleOrderResponse(order.getId(), order.getMember().getFullName(), order.getOrderDate(),
                 order.getStatus(), order.getDelivery().getAddress());
     }
 

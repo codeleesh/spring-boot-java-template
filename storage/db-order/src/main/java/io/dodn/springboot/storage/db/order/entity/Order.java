@@ -26,7 +26,7 @@ public class Order {
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "member_id")
-    private MemberOrder memberOrder;
+    private Member member;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
@@ -41,9 +41,9 @@ public class Order {
     private OrderStatus status; // 주문상태 [ORDER, CANCEL]
 
     // ==연관관계 메서드==//
-    public void setMemberOrder(MemberOrder memberOrder) {
-        this.memberOrder = memberOrder;
-        memberOrder.getOrders().add(this);
+    public void setMember(Member member) {
+        this.member = member;
+        member.getOrders().add(this);
     }
 
     public void addOrderItem(OrderItem orderItem) {
@@ -57,9 +57,9 @@ public class Order {
     }
 
     // ==생성 메서드==//
-    public static Order createOrder(MemberOrder memberOrder, Delivery delivery, OrderItem... orderItems) {
+    public static Order createOrder(Member member, Delivery delivery, OrderItem... orderItems) {
         Order order = new Order();
-        order.setMemberOrder(memberOrder);
+        order.setMember(member);
         order.setDelivery(delivery);
         for (OrderItem orderItem : orderItems) {
             order.addOrderItem(orderItem);

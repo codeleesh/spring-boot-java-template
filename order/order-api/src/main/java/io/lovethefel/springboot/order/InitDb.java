@@ -19,6 +19,7 @@ public class InitDb {
 
     @PostConstruct
     public void init() {
+
         initService.dbInit1();
         initService.dbInit2();
     }
@@ -31,9 +32,9 @@ public class InitDb {
         private final EntityManager em;
 
         public void dbInit1() {
-            System.out.println("Init1" + this.getClass());
-            MemberOrder memberOrder = createMember("이", "자바", "서울", "1", "1111");
-            em.persist(memberOrder);
+
+            Member member = createMember("이", "자바", "서울", "1", "1111");
+            em.persist(member);
 
             Book book1 = createBook("JPA1 BOOK", 10000, 100);
             em.persist(book1);
@@ -44,14 +45,15 @@ public class InitDb {
             OrderItem orderItem1 = OrderItem.createOrderItem(book1, 10000, 1);
             OrderItem orderItem2 = OrderItem.createOrderItem(book2, 20000, 2);
 
-            Delivery delivery = createDelivery(memberOrder);
-            Order order = Order.createOrder(memberOrder, delivery, orderItem1, orderItem2);
+            Delivery delivery = createDelivery(member);
+            Order order = Order.createOrder(member, delivery, orderItem1, orderItem2);
             em.persist(order);
         }
 
         public void dbInit2() {
-            MemberOrder memberOrder = createMember("이", "자바", "진주", "2", "2222");
-            em.persist(memberOrder);
+
+            Member member = createMember("이", "자바", "진주", "2", "2222");
+            em.persist(member);
 
             Book book1 = createBook("SPRING1 BOOK", 20000, 200);
             em.persist(book1);
@@ -62,17 +64,18 @@ public class InitDb {
             OrderItem orderItem1 = OrderItem.createOrderItem(book1, 20000, 3);
             OrderItem orderItem2 = OrderItem.createOrderItem(book2, 40000, 4);
 
-            Delivery delivery = createDelivery(memberOrder);
-            Order order = Order.createOrder(memberOrder, delivery, orderItem1, orderItem2);
+            Delivery delivery = createDelivery(member);
+            Order order = Order.createOrder(member, delivery, orderItem1, orderItem2);
             em.persist(order);
         }
 
-        private MemberOrder createMember(String nameOfFirst, String nameOfLast, String city, String street, String zipcode) {
+        private Member createMember(String nameOfFirst, String nameOfLast, String city, String street, String zipcode) {
 
-            return MemberOrder.of(nameOfFirst, nameOfLast, new Address(city, street, zipcode));
+            return Member.of(nameOfFirst, nameOfLast, new Address(city, street, zipcode));
         }
 
         private Book createBook(String name, int price, int stockQuantity) {
+
             Book book1 = new Book();
             book1.setName(name);
             book1.setPrice(price);
@@ -80,12 +83,11 @@ public class InitDb {
             return book1;
         }
 
-        private Delivery createDelivery(MemberOrder memberOrder) {
+        private Delivery createDelivery(Member member) {
+
             Delivery delivery = new Delivery();
-            delivery.setAddress(memberOrder.getAddress());
+            delivery.setAddress(member.getAddress());
             return delivery;
         }
-
     }
-
 }

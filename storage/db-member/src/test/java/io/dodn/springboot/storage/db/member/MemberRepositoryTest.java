@@ -6,11 +6,11 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
-class MemberOrderRepositoryTest extends MemberDbContextTest {
+class MemberRepositoryTest extends MemberDbContextTest {
 
     private final MemberRepository memberRepository;
 
-    public MemberOrderRepositoryTest(final MemberRepository memberRepository) {
+    public MemberRepositoryTest(final MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
 
