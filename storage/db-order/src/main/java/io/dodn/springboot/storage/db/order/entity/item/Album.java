@@ -1,4 +1,4 @@
-package io.dodn.springboot.storage.db.order.item;
+package io.dodn.springboot.storage.db.order.entity.item;
 
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;

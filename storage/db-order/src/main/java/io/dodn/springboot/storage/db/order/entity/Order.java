@@ -1,6 +1,5 @@
-package io.dodn.springboot.storage.db.order;
+package io.dodn.springboot.storage.db.order.entity;
 
-import io.dodn.springboot.storage.db.order.member.Member;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;

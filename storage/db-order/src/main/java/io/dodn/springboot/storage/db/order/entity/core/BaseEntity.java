@@ -1,4 +1,4 @@
-package io.dodn.springboot.storage.db.order.core;
+package io.dodn.springboot.storage.db.order.entity.core;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;

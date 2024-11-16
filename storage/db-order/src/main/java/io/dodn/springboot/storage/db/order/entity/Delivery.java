@@ -1,7 +1,6 @@
-package io.dodn.springboot.storage.db.order;
+package io.dodn.springboot.storage.db.order.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.dodn.springboot.storage.db.order.member.Address;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
