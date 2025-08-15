@@ -244,10 +244,70 @@ git config core.hookspath .githooks
 - 로컬 개발시 `unitTest`로 빠른 검증
 
 ## 8. 용어 사전
-- 아키텍처 관련 용어
-- 기술 스택 용어
-- 테스트 관련 용어
-- 운영 환경 용어
+
+### 8.1 API 및 컨트롤러 용어
+
+| 용어 | 정의 | 예시 |
+|------|------|------|
+| **ExampleController** | 예제 도메인의 REST 컨트롤러 | `/get/{exampleValue}`, `/post`, `/produce` |
+| **exampleValue** | URL 경로 변수로 사용되는 예제 값 | `@PathVariable String exampleValue` |
+| **exampleParam** | 쿼리 파라미터로 사용되는 예제 매개변수 | `@RequestParam String exampleParam` |
+| **ApiResponse** | 공통 API 응답 래퍼 클래스 | `ApiResponse<ExampleResponseDto>` |
+| **v1** | API 버전 1을 나타내는 패키지 구조 | `controller.v1.*` |
+
+### 8.2 DTO 및 도메인 용어
+
+| 용어 | 정의 | 예시 |
+|------|------|------|
+| **ExampleRequestDto** | 요청 데이터 전송 객체 | `record ExampleRequestDto(String data)` |
+| **ExampleResponseDto** | 응답 데이터 전송 객체 | `record ExampleResponseDto(String result)` |
+| **ExampleData** | 도메인 데이터 객체 | `new ExampleData(exampleValue, exampleParam)` |
+| **ExampleResult** | 도메인 처리 결과 객체 | `new ExampleResult(exampleData.value())` |
+| **toExampleData()** | DTO를 도메인 객체로 변환하는 메서드 | `request.toExampleData()` |
+
+### 8.3 서비스 및 비즈니스 로직 용어
+
+| 용어 | 정의 | 예시 |
+|------|------|------|
+| **ExampleService** | 예제 도메인의 비즈니스 서비스 | `@Service public class ExampleService` |
+| **processExample()** | 예제 데이터를 처리하는 비즈니스 메서드 | `processExample(ExampleData exampleData)` |
+| **produceExample()** | 예제 메시지를 생성하는 메서드 | Kafka 메시지 전송 |
+| **exampleExampleService** | 서비스 의존성 주입시 사용되는 변수명 | 생성자 주입 |
+
+### 8.4 데이터베이스 엔티티 용어
+
+| 용어 | 정의 | 예시 |
+|------|------|------|
+| **ExampleEntity** | 예제 도메인의 JPA 엔티티 | `@Entity public class ExampleEntity` |
+| **exampleColumn** | 데이터베이스 컬럼명 | `@Column private String exampleColumn` |
+| **BaseEntity** | 공통 엔티티 속성을 담은 기본 클래스 | 생성일, 수정일 등 |
+
+### 8.5 Kafka 및 메시징 용어
+
+| 용어 | 정의 | 예시 |
+|------|------|------|
+| **test-topic** | 테스트용 카프카 토픽명 | `@EmbeddedKafka topics = {"test-topic"}` |
+| **KafkaProducerService** | 카프카 메시지 발송 서비스 | `sendMessage("test-topic", "test")` |
+| **sendMessage()** | 메시지 발송 메서드 | 토픽과 메시지를 파라미터로 받음 |
+
+### 8.6 에러 처리 및 응답 용어
+
+| 용어 | 정의 | 예시 |
+|------|------|------|
+| **ErrorCode** | 시스템 에러 코드 열거형 | `enum ErrorCode { E500 }` |
+| **ApiControllerAdvice** | 전역 예외 처리 클래스 | `@RestControllerAdvice` |
+| **ResultType** | API 응답 결과 타입 | 성공/실패 구분 |
+| **ErrorType** | 에러 유형 분류 | 시스템 에러, 비즈니스 에러 등 |
+
+### 8.7 패키지 구조 용어
+
+| 용어 | 정의 | 설명 |
+|------|------|------|
+| **io.dodn.springboot** | 루트 패키지명 | 프로젝트 기본 네임스페이스 |
+| **core.api.controller** | 컨트롤러 패키지 | REST API 엔드포인트 위치 |
+| **core.api.domain** | 도메인 패키지 | 비즈니스 로직 및 서비스 위치 |
+| **support.response** | 응답 지원 패키지 | 공통 응답 클래스 위치 |
+| **support.error** | 에러 지원 패키지 | 에러 처리 관련 클래스 위치 |
 
 ## 9. 참고 자료
 - 외부 문서 링크
