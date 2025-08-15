@@ -109,20 +109,102 @@ spring-boot-java-template/
 - External API Integrations
 
 ## 4. 주요 기능 설명
-- Core 기능 (core-api, core-enum)
-- Integration 기능 (clients)
-- Storage 기능 (db-core, kafka-core)
-- Support 기능 (logging, monitoring)
-- Test 기능 (api-docs)
+
 
 ## 5. 설정 및 프로파일
-- 런타임 프로파일 정의 (local, dev, staging, live)
-- 테스트 태스크 분류 (unitTest, contextTest, restDocsTest 등)
+
+### 5.1 런타임 프로파일 정의
+
+| 프로파일 | 목적 | 설명 |
+|----------|------|------|
+| local | 로컬 개발 | 네트워크 연결 없이 개발 가능한 환경 설정 |
+| local-dev | 로컬-개발서버 연결 | 로컬에서 개발 환경에 접속하여 작업 |
+| dev | 개발 환경 | 개발 환경 배포용 설정 |
+| staging | 스테이징 환경 | 운영 전 검증 환경 설정 |
+| live | 운영 환경 | 실제 서비스 운영 환경 설정 |
+
+### 5.2 테스트 태스크 분류
+
+| 태스크 | 목적 | 포함 범위 | 실행 방법 |
+|--------|------|-----------|----------|
+| test | CI 실행 테스트 | 전체 테스트 (develop, restdocs 제외) | `./gradlew test` |
+| unitTest | 단위 테스트 | 의존성 없는 빠른 테스트 | `./gradlew unitTest` |
+| contextTest | 통합 테스트 | Spring Context 로딩 테스트 | `./gradlew contextTest` |
+| restDocsTest | 문서화 테스트 | API 문서 생성용 테스트 | `./gradlew restDocsTest` |
+| developTest | 개발 테스트 | CI에서 실행하지 않는 테스트 | `./gradlew developTest` |
+
+### 5.3 Gradle 태스크 설정
+
+**빌드 관련**
+- `bootJar.enabled = false` (서브모듈)
+- `jar.enabled = true` (서브모듈)
+- `bootJar.enabled = true` (core-api만)
+
+**테스트 태그 관리**
+- `excludeTags('develop', 'restdocs')` - 기본 test 태스크
+- `includeTags('context')` - contextTest 태스크
+- `includeTags('restdocs')` - restDocsTest 태스크
 
 ## 6. 빌드 및 배포 가이드
-- Gradle 설정 구조
-- 실행 명령어 모음
-- CI/CD 파이프라인 (GitHub Actions)
+
+### 6.1 Gradle 설정 구조
+
+**루트 빌드 파일**: `build.gradle`
+- 멀티 모듈 프로젝트 설정
+- 공통 의존성 관리 (dependencyManagement)
+- 플러그인 적용 (Spring Boot, Java Format, Spotless)
+- 서브프로젝트 공통 설정
+
+**의존성 관리**: `gradle.properties`
+- 모든 의존성 버전 중앙 관리
+- 프로젝트 메타데이터 정의
+- 플러그인 버전 관리
+
+**모듈 설정**: `settings.gradle`
+- 포함할 서브모듈 정의
+- 플러그인 관리 설정
+
+### 6.2 실행 명령어 모음
+
+**빌드 관련**
+```bash
+# 전체 프로젝트 빌드
+./gradlew build
+
+# 특정 모듈 빌드
+./gradlew :core:core-api:build
+
+# 전체 프로젝트 클린 빌드
+./gradlew clean build
+```
+
+**테스트 관련**
+```bash
+# 단위 테스트만 실행
+./gradlew unitTest
+
+# 통합 테스트 실행
+./gradlew contextTest
+
+# API 문서 생성
+./gradlew restDocsTest asciidoctor
+
+# 개발용 테스트 실행
+./gradlew developTest
+```
+
+**실행 관련**
+```bash
+# 애플리케이션 실행
+./gradlew :core:core-api:bootRun
+
+# 특정 프로파일로 실행
+./gradlew :core:core-api:bootRun --args='--spring.profiles.active=local'
+
+# JAR 파일 생성 후 실행
+./gradlew :core:core-api:bootJar
+java -jar core/core-api/build/libs/core-api-0.0.1-SNAPSHOT.jar
+```
 
 ## 7. 개발 가이드라인
 - 코드 스타일 규칙 (Spring Java Format)
