@@ -36,4 +36,11 @@ public class ExampleController {
         return ApiResponse.success(new ExampleResponseDto(result.data()));
     }
 
+    @GetMapping("/produce")
+    public ApiResponse<Void> exampleProduce() {
+
+        exampleExampleService.produceExample();
+        return (ApiResponse<Void>) ApiResponse.success();
+    }
+
 }

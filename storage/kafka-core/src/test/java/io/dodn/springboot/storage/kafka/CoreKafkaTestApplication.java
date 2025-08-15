@@ -1,22 +1,15 @@
-package io.dodn.springboot;
+package io.dodn.springboot.storage.kafka;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
-import org.springframework.kafka.test.context.EmbeddedKafka;
 
 @ConfigurationPropertiesScan
 @SpringBootApplication
-@EmbeddedKafka(
-        partitions = 1,
-        topics = {"test-topic"},
-        ports = {9093}
-)
-public class CoreApiApplication {
+public class CoreKafkaTestApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(CoreApiApplication.class, args);
+        SpringApplication.run(CoreKafkaTestApplication.class, args);
     }
 
 }
-

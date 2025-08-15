@@ -1,0 +1,6 @@
+dependencies {
+    implementation project(':core:core-enum')
+    implementation 'org.springframework.boot:spring-boot-starter'
+    api 'org.springframework.kafka:spring-kafka'
+    api 'org.springframework.kafka:spring-kafka-test'
+}
