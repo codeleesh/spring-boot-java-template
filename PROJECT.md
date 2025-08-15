@@ -310,11 +310,83 @@ git config core.hookspath .githooks
 | **support.error** | 에러 지원 패키지 | 에러 처리 관련 클래스 위치 |
 
 ## 9. 참고 자료
-- 외부 문서 링크
-- 프로젝트 관련 파일 목록
-- 개발 도구 설정 가이드
+
+### 9.1 외부 문서 링크
+
+**Spring 생태계**
+- [Spring Boot Reference Documentation](https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/)
+- [Spring Cloud OpenFeign](https://docs.spring.io/spring-cloud-openfeign/docs/current/reference/html/)
+- [Spring Data JPA](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/)
+- [Spring REST Docs](https://docs.spring.io/spring-restdocs/docs/current/reference/html5/)
+
+**메시징 및 데이터베이스**
+- [Apache Kafka Documentation](https://kafka.apache.org/documentation/)
+- [MySQL Documentation](https://dev.mysql.com/doc/)
+- [H2 Database](https://www.h2database.com/html/main.html)
+
+**모니터링 및 로깅**
+- [Micrometer Documentation](https://micrometer.io/docs)
+- [Sentry Java Documentation](https://docs.sentry.io/platforms/java/)
+- [Logback Manual](https://logback.qos.ch/manual/)
+
+### 9.2 프로젝트 관련 파일 목록
+
+**핵심 설정 파일**
+- `build.gradle` - 루트 빌드 설정
+- `gradle.properties` - 버전 및 프로젝트 설정
+- `settings.gradle` - 멀티 모듈 구성
+- `README.md` - 프로젝트 개요 및 시작 가이드
+
+**모듈별 빌드 설정**
+- `core/core-api/build.gradle` - API 모듈 의존성
+- `storage/db-core/build.gradle` - 데이터베이스 모듈
+- `clients/client-example/build.gradle` - HTTP 클라이언트 모듈
+
+**운영 설정**
+- `.github/workflows/ci.yml` - CI/CD 파이프라인
+- `.githooks/pre-commit` - Git Hook 설정
+- `http/coreApi.http` - API 테스트 파일
+
+### 9.3 개발 도구 설정 가이드
+
+**IntelliJ IDEA 권장 설정**
+```
+Build, Execution, Deployment > Build Tools > Gradle > Run tests using > IntelliJ IDEA
+```
+
+**Spring Java Format 플러그인**
+- [Spring Java Format IntelliJ IDEA](https://github.com/spring-io/spring-javaformat#intellij-idea)
+
+**Git Hook 설정**
+```bash
+git config core.hookspath .githooks
+```
 
 ## 10. 메타데이터
-- 문서 버전 히스토리
-- 연락처 및 지원 정보
-- 라이선스 정보
+
+### 10.1 문서 버전 히스토리
+
+| 버전 | 날짜 | 변경사항 | 작성자 |
+|------|------|----------|--------|
+| 1.0 | 2025-08-16 | 초기 문서 작성 | - |
+
+### 10.2 연락처 및 지원 정보
+
+**프로젝트 정보**
+- **저장소**: [GitHub - team-dodn/spring-boot-java-template](https://github.com/team-dodn/spring-boot-java-template)
+- **그룹**: io.dodn.springboot
+- **현재 버전**: 0.0.1-SNAPSHOT
+
+**소셜 미디어**
+- **Twitter**: [@geminikims](https://twitter.com/geminikims)
+- **YouTube**: [geminikims Channel](https://www.youtube.com/@geminikims)
+
+### 10.3 라이선스 정보
+
+- **라이선스**: Apache License 2.0
+- **라이선스 파일**: `LICENCE.md`
+- **오픈소스**: [![License](https://img.shields.io/badge/License-Apache%202.0-green.svg)](https://opensource.org/licenses/Apache-2.0)
+
+**지원**
+- **JetBrains**: Open Source Support Program
+- **CI/CD**: GitHub Actions (무료)
