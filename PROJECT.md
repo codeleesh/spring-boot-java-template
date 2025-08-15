@@ -207,9 +207,41 @@ java -jar core/core-api/build/libs/core-api-0.0.1-SNAPSHOT.jar
 ```
 
 ## 7. 개발 가이드라인
-- 코드 스타일 규칙 (Spring Java Format)
-- 테스트 전략 및 방법론
-- 모듈 설계 원칙
+
+### 7.1 코드 스타일 규칙
+
+**Spring Java Format 적용**
+- 일관된 코드 포맷팅 유지
+- IntelliJ IDEA 플러그인 설치 권장
+- 자동 포맷팅 설정: `Build, Execution, Deployment > Build Tools > Gradle > Run tests using > IntelliJ IDEA`
+
+**Spotless 플러그인 (선택적)**
+- Google Java Format 스타일 적용 가능
+- 현재 주석 처리 상태 (필요시 활성화)
+- 적용 명령어: `./gradlew spotlessApply`
+
+**Git Hook 설정**
+```bash
+# 커밋 전 자동 린트 검사
+git config core.hookspath .githooks
+```
+
+### 7.2 테스트 전략 및 방법론
+
+**테스트 계층 분리**
+- **Unit Test**: 비즈니스 로직 단위 검증, 빠른 실행
+- **Context Test**: Spring Context 로딩, 통합 검증
+- **REST Docs Test**: API 스펙 문서 자동 생성
+
+**테스트 태그 활용**
+- `@Tag("context")`: Spring Context 필요한 테스트
+- `@Tag("restdocs")`: API 문서 생성용 테스트
+- `@Tag("develop")`: 개발 중 임시 테스트 (CI 제외)
+
+**테스트 실행 전략**
+- CI에서는 `test` 태스크로 빠른 피드백
+- 문서 업데이트시 `restDocsTest` 실행
+- 로컬 개발시 `unitTest`로 빠른 검증
 
 ## 8. 용어 사전
 - 아키텍처 관련 용어
