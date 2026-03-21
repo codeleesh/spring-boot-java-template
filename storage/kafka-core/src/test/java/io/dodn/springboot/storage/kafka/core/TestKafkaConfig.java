@@ -48,7 +48,7 @@ public class TestKafkaConfig {
 
     @Bean
     @Primary
-    public ConcurrentKafkaListenerContainerFactory<String, String> testKafkaListenerContainerFactory() {
+    public ConcurrentKafkaListenerContainerFactory<String, String> kafkaListenerContainerFactory() {
         ConcurrentKafkaListenerContainerFactory<String, String> factory =
                 new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(testConsumerFactory());

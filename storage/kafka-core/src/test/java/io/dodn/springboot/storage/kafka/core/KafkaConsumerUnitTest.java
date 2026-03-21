@@ -30,11 +30,10 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 @SpringBootTest
 @EmbeddedKafka(
         partitions = 1,
-        topics = {"unit-test-topic"},
-        ports = {9094}
+        topics = {"unit-test-topic"}
 )
 @TestPropertySource(properties = {
-        "spring.kafka.bootstrap-servers=localhost:9094"
+        "spring.kafka.bootstrap-servers=${spring.embedded.kafka.brokers}"
 })
 public class KafkaConsumerUnitTest {
 

@@ -18,7 +18,6 @@ plugins {
 allprojects {
     group = "${projectGroup}"
     version = "${applicationVersion}"
-    sourceCompatibility = project.javaVersion
 
     repositories {
         mavenCentral()
@@ -31,6 +30,10 @@ subprojects {
     apply plugin: 'io.spring.dependency-management'
     apply plugin: 'org.asciidoctor.jvm.convert'
 
+    java {
+        sourceCompatibility = JavaVersion.toVersion(project.javaVersion)
+    }
+
     dependencyManagement {
         imports {
             mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudDependenciesVersion}"
@@ -41,8 +44,8 @@ subprojects {
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
     }
 
-    bootJar.enabled = false
-    jar.enabled = true
+    tasks.named('bootJar') { enabled = false }
+    tasks.named('jar') { enabled = true }
 
     test {
         useJUnitPlatform {

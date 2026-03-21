@@ -2,9 +2,12 @@ package io.dodn.springboot.storage.kafka.core;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.kafka.test.context.EmbeddedKafka;
@@ -17,18 +20,15 @@ import java.util.concurrent.TimeUnit;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+@Tag("context")
 @SpringBootTest
+@DirtiesContext(classMode = ClassMode.AFTER_CLASS)
 @EmbeddedKafka(
         partitions = 1,
-        topics = {"test-topic", "test-topic-with-key", "error-topic"},
-        ports = {9093},
-        brokerProperties = {
-                "listeners=PLAINTEXT://localhost:9093",
-                "port=9093"
-        }
+        topics = {"test-topic", "test-topic-with-key", "error-topic"}
 )
 @TestPropertySource(properties = {
-        "spring.kafka.bootstrap-servers=localhost:9093",
+        "spring.kafka.bootstrap-servers=${spring.embedded.kafka.brokers}",
         "spring.kafka.consumer.auto-offset-reset=earliest"
 })
 public class KafkaIntegrationTest {
@@ -62,7 +62,7 @@ public class KafkaIntegrationTest {
         assertThat(messageReceived).isTrue();
 
         List<String> receivedMessages = consumerService.getReceivedMessages();
-        assertThat(receivedMessages).isEqualTo(1);
+        assertThat(receivedMessages.size()).isEqualTo(1);
         assertThat(receivedMessages.get(0)).isEqualTo(testMessage);
     }
 
@@ -82,7 +82,7 @@ public class KafkaIntegrationTest {
         assertThat(messageReceived).isTrue();
 
         List<String> receivedMessages = consumerService.getReceivedMessages();
-        assertThat(receivedMessages).isEqualTo(1);
+        assertThat(receivedMessages.size()).isEqualTo(1);
         assertThat(receivedMessages.get(0)).isEqualTo(key + ":" + value);
     }
 
@@ -123,7 +123,7 @@ public class KafkaIntegrationTest {
         Thread.sleep(2000); // 모든 메시지가 처리될 때까지 대기
 
         List<String> receivedMessages = consumerService.getReceivedMessages();
-        assertThat(receivedMessages).isEqualTo(testMessages.size());
+        assertThat(receivedMessages.size()).isEqualTo(testMessages.size());
 //        assertThat(receivedMessages).containsExactlyInAnyOrderElementsOf(testMessages);
     }
 
