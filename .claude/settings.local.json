@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(claude mcp:*)",
+      "Bash(uv run serena --help:*)",
+      "mcp__serena__activate_project",
+      "mcp__serena__list_dir",
+      "mcp__serena__find_file",
+      "mcp__plugin_serena_serena__read_file",
+      "mcp__serena__write_memory",
+      "mcp__serena__think_about_whether_you_are_done"
+    ]
+  }
+}
