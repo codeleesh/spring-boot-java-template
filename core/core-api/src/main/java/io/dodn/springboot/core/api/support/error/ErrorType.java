@@ -6,7 +6,13 @@ import org.springframework.http.HttpStatus;
 public enum ErrorType {
 
     DEFAULT_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, ErrorCode.E500, "An unexpected error has occurred.",
-            LogLevel.ERROR);
+            LogLevel.ERROR),
+    WITHDRAWAL_VALIDATION_FAILED(HttpStatus.CONFLICT, ErrorCode.E409, "Withdrawal validation failed.",
+            LogLevel.WARN),
+    WITHDRAWAL_WEBHOOK_NOT_FOUND(HttpStatus.NOT_FOUND, ErrorCode.E404, "Webhook registration not found.",
+            LogLevel.WARN),
+    WITHDRAWAL_WEBHOOK_DUPLICATE(HttpStatus.CONFLICT, ErrorCode.E409,
+            "Webhook with same system name already exists.", LogLevel.WARN);
 
     private final HttpStatus status;
 
